@@ -2,32 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Search Engine</title>
+    <title>PineappleSearch</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        input[type=text] { width: 300px; padding: 10px; margin-bottom: 20px; }
-        ul { list-style-type: none; padding: 0; }
-        li { border-bottom: 1px solid #ccc; padding: 10px 0; }
-        a { text-decoration: none; color: inherit; }
-        .url { font-size: smaller; color: #666; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4; /* Light gray background for contrast */
+            margin: 0;
+            padding: 20px;
+            color: #333; /* Dark gray text for readability */
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00; /* Bright yellow-orange for the title */
+            font-size: 2.5em; /* Larger font size for emphasis */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ffcc00; /* Match focus border with title color */
+            box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); /* Yellow-orange shadow on focus */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: white; /* White background for results */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            text-decoration: none;
+            color: #3498db; /* Bright blue for links */
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .url {
+            font-size: smaller;
+            color: #666; /* Medium gray for URLs */
+        }
+        .tags {
+            font-size: smaller;
+            color: #999; /* Light gray for tags */
+        }
+        .description {
+            margin-top: 5px;
+            color: #555; /* Darker gray for descriptions */
+        }
+        .status {
+            font-weight: bold; 
+            margin-top: 10px; /* Space above status */
+        }
+        
+        /* Styles for status pills */
+        .status-pill {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px; /* Rounded corners for pill effect */
+            color: white; /* Text color for pills */
+            font-size: smaller; /* Smaller font size for pills */
+        }
+        
+        .status-up {
+            background-color: #28a745; /* Green for "Up" status */
+        }
+        
+        .status-down {
+            background-color: #dc3545; /* Red for "Down" status */
+        }
+
+        p.no-results {
+            text-align: center; /* Center align no results message */
+            color: #e74c3c; /* Red color for emphasis */
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>Simple Search Engine</h1>
+    <h1>PineappleSearch</h1>
     <form action="/">
         <input type="text" name="q" placeholder="Search..." value="{{ query }}">
     </form>
     {% if results %}
     <ul>
         {% for result in results %}
-        <li><a href="{{ result['url'] }}">{{ result['name'] }}</a>
+        <li>
+            <a href="{{ result['url'] }}">{{ result['name'] }}</a>
             <p class="tags">Tags: {{ ', '.join(result['tags']) }}</p>
             <p class="description">{{ result.get('description', '') }}</p>
+            
+            <!-- Displaying the ping status with color-coded pills -->
+            {% if result['status'].startswith('Up') %}
+                <span class="status-pill status-up">Status: {{ result['status'] }}</span>
+            {% else %}
+                <span class="status-pill status-down">Status: {{ result['status'] }}</span>
+            {% endif %}
+            
         </li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>No results found.</p>
+    <p class="no-results">No results found.</p> <!-- Styled no results message -->
     {% endif %}
 </body>
 </html>
