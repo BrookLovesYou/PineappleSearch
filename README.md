@@ -16,11 +16,11 @@ To build this project, follow these steps,
 
 Clone the repository
 
-    git clone https://github.com/yourusername/projectname.git
+    git clone https://github.com/BrookLovesYou/PineappleSearch.git
 
 Navigate to the project directory
 
-    cd projectname
+    cd PineappleSearch
 
 Build the container
 
