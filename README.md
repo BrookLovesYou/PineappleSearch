@@ -2,7 +2,7 @@ Pineapple Search
 
 About:
 
-This project was made to address a very simple issue I had. I wanted a stupid simple search engine with user defined results; but non existed as far as I could tell.
+This project was made to address a very simple issue I had. I wanted a stupid simple search engine with user defined results; but non existant as far as I could tell.
 
 Features
 
