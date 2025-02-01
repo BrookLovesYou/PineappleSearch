@@ -1,0 +1,9 @@
+- name: Example Site
+  url: http://example.com
+  tags: [tech, blog]
+  description: A website about technology and tips
+
+- name: Another Site
+  url: http://anothersite.com
+  tags: []
+  description: Just another site without specific tags

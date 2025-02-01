@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Search Engine</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        input[type=text] { width: 300px; padding: 10px; margin-bottom: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { border-bottom: 1px solid #ccc; padding: 10px 0; }
+        a { text-decoration: none; color: inherit; }
+        .url { font-size: smaller; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Simple Search Engine</h1>
+    <form action="/">
+        <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+    </form>
+    {% if results %}
+    <ul>
+        {% for result in results %}
+        <li><a href="{{ result['url'] }}">{{ result['name'] }}</a>
+            <p class="tags">Tags: {{ ', '.join(result['tags']) }}</p>
+            <p class="description">{{ result.get('description', '') }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
