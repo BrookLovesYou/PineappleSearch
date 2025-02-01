@@ -1,6 +1,8 @@
 import requests
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify, url_for
 import yaml
+from urllib.parse import urlparse
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 data = []
@@ -30,6 +32,15 @@ def index():
     
     return render_template('index.html', results=filtered_data, query=query)
 
+@app.route('/suggest')
+def suggest():
+    query = request.args.get('q', '').lower()
+    suggestions = []
+    for item in data:
+        if query in item['name'].lower() or query in ' '.join(item['tags']).lower():
+            suggestions.append(item['name'])
+    return jsonify(suggestions[:5])  # Limit to 5 suggestions
+
 if __name__ == '__main__':
     data = load_data()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
