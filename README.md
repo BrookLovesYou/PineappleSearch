@@ -39,7 +39,7 @@ To run PineappleSearch locally using docker compose, ensure you've completed the
 
 ## Modifying the search index:
 
-To modify the search index, edit the results.yaml file in the data/ directory. Follow the format of the example entries. Be sure to restart the container after making any changes.
+To modify the search index, edit the **results.yaml** file in the **data/** directory. Follow the format of the example entries. Be sure to restart the container after making any changes.
 
     docker restart pineapplesearch
 
@@ -49,4 +49,4 @@ Contributions are welcome! Please feel free to submit a Pull Request. This is a 
 
 ## License:
 
-This project is licensed under the Apache License 2.0 - see the LICENSE.md file for details.
+This project is licensed under the Apache License 2.0 - see the **LICENSE** file for details.
