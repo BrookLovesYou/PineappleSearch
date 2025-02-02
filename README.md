@@ -6,8 +6,8 @@ This project was made to address a very simple issue I had. I wanted a stupid si
 
 Features
 
-    - User defined search index: The user defines all search index results in the results.yaml file.
-    - Search suggestions: As the user types, search suggestions will appear.
+    - User-defined search index: All search index results are defined by the user in the results.yaml file.
+    - Search suggestions: Suggestions appear as the user types.
     - Simplicity: No frills, no automation, just enough search engine for a homelab.
 
 Building:
@@ -28,17 +28,24 @@ Build the container
 
 Running:
 
-To run the project locally,
+To run the project locally using docker run, ensure you've completed the build steps first, then run:
 
-Ensure you've completed the build steps above.
+    docker run -p 5000:5000 --name pineapplesearch -v ./data:/app/data pineapplesearch
 
-Start the server
 
-    docker run -p 5000:5000 pineapplesearch
+To run PineappleSearch locally using docker compose, ensure you've completed the build steps and are in the cloned PineappleSearch repo, then run:
+
+    docker compose up -d
+
+Modifying the search index:
+
+To modify the search index, edit the results.yaml file in the data/ directory. Follow the format of the example entries. Be sure to restart the container after making any changes.
+
+    docker restart pineapplesearch
 
 Contributing:
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. This is a hobby project I intend to give some love over the weekends; I may not be very attentive Monday - Friday.
 
 License:
 

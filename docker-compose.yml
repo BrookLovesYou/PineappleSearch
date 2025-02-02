@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  pineapplesearch:
+    image: pineapplesearch
+    container_name: pineapplesearch
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "5000:5000"
